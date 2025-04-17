@@ -4,6 +4,20 @@ if(!isset($_SESSION['user_id'])){
     header("Location: index.php");
     exit();
 }
+
+$user_id = $_SESSION['user_id'];
+
+$stmt = $conn->prepare("SELECT nome FROM padarias where user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if($result->num_rows === 0){
+    header("Location: padaria.php");
+    exit();
+}
+
+$padaria = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
