@@ -1,4 +1,5 @@
 <?php
+session_start();
     require_once 'includes/db.php';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -10,7 +11,8 @@
         $stmt->bind_param("sss", $nome, $email, $senha);
 
         if($stmt->execute()){
-            header("Location: index.php");
+            $_SESSION['user_id'] = $stmt->insert_id;
+            header("Location: padaria.php");
             exit();
         }else{
             echo "Erro ao cadastrar: " . $stmt->error;
