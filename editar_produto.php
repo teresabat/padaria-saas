@@ -18,7 +18,7 @@ $produto_id = $_GET['id'];
 
 //verificar se o produto pertence a padaria do user
 $verifica = $conn->prepare("
-    SELECT .id, p.nome, p.preco, p.estoque
+    SELECT p.id, p.nome, p.preco, p.estoque
     FROM produtos p
     JOIN padarias pad ON p.padaria_id = pad.id
     WHERE p.id ? AND pad.user_id = ?

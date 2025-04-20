@@ -7,7 +7,7 @@ session_start();
         $email = $_POST['email'];
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?,?,?)");
+        $stmt = $conn->prepare("INSERT INTO users (nome, email, senha) VALUES (?,?,?)");
         $stmt->bind_param("sss", $nome, $email, $senha);
 
         if($stmt->execute()){
